@@ -1,0 +1,78 @@
+﻿@model PagedList<ArticleModel>
+@{
+    ViewBag.Title = "文章列表";
+}
+<section class="tool-box">
+    <a href="/admin/article/add" class="am-btn am-btn-xs am-btn-success"><i class="am-icon-plus"></i>添加</a>
+</section>
+<label>分类查询：</label>
+<form id="form_0" action="/admin/article/list" method="get">
+    @await Component.InvokeAsync("Category", ViewBag.CategoryId)
+    <input type="hidden" name="page" id="page" value="@Model.Page" />
+</form>
+
+<table class="am-table am-table-bordered">
+    <thead>
+        <tr>
+            <th>标题</th>
+            <th>分类</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("Detail", "Article", new { id = item.Id})" target="_blank" title="@item.Title">@item.Title</a>
+                </td>
+                <td>@item.CategoryTitle</td>
+                <td>@item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <td>
+                    <a href="/admin/article/modify/@item.Id" title="编辑" class="am-btn am-btn-xs am-btn-secondary">编辑</a>
+                    <a href="javascript:doDelete(@item.Id)" title="编辑" class="am-btn am-btn-xs am-btn-danger">删除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<ul class="am-pagination">
+    <li>
+        @if (Model.Page <= 1)
+        {
+            <a href="javascript:void(0);">&laquo; 上一页</a>
+        }
+        else
+        {
+
+            <a href="javascript:doQuery(@(Model.Page -1));">&laquo; 上一页</a>
+        }
+    </li>
+    <li>当前页：@Model.Page | 总页数：@Model.PageCount | 总记录数：@Model.Total</li>
+    <li>
+        @if (Model.Page >= Model.PageCount)
+        {
+            <a href="javascript:void(0);">下一页 &raquo;</a>
+        }
+        else
+        {
+            <a href="javascript:doQuery(@(Model.Page +1));">下一页 &raquo;</a>
+        }
+    </li>
+</ul>
+<script type="text/javascript">
+    function doDelete(id) {
+        if (confirm("删除数据后不可恢复，确定删除吗？")) {
+            window.location.href = "/admin/article/delete/" + id;
+        }
+    }
+    function doQuery(page) {
+        $("#page").val(page);
+        $("#form_0").submit();
+    }
+
+    $("#CategoryId").on("change", function () {
+        doQuery(1);
+    });
+</script>

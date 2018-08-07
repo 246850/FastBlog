@@ -1,0 +1,44 @@
+﻿@model List<CategoryModel>
+@{
+    ViewBag.Title = "分类列表";
+}
+<section class="tool-box">
+    <a href="/admin/category/add" class="am-btn am-btn-xs am-btn-success"><i class="am-icon-plus"></i>添加</a>
+</section>
+
+<table class="am-table am-table-bordered">
+    <thead>
+        <tr>
+            <th>标题</th>
+            <th>描述</th>
+            <th>排序值</th>
+            <th>文章数</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Title</td>
+            <td>@item.Desc</td>
+            <td>@item.Sequence</td>
+            <td><span class="am-badge am-badge-success am-radius">@item.ArticleCount</span></td>
+            <td>@item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+            <td>
+                <a href="/admin/category/modify/@item.Id" title="编辑" class="am-btn am-btn-xs am-btn-secondary">编辑</a>
+                <a href="javascript:doDelete(@item.Id)" title="编辑" class="am-btn am-btn-xs am-btn-danger">删除</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    function doDelete(id) {
+        if (confirm("删除数据后不可恢复，确定删除吗？")) {
+            window.location.href = "/admin/category/delete/" + id;
+        }
+    }
+</script>

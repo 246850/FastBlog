@@ -1,0 +1,35 @@
+@model PagedList<ArticleEntity>
+
+@{
+    ViewBag.Title = "基于.Net Core轻量级博客系统";
+}
+<ul class="list">
+    @foreach (var item in Model)
+    {
+        <li>
+            <a href="@Url.Action("Detail", "Article", new { id = item.Id })" title="@item.Title">@Html.Raw(item.Title) (<span>@item.CreateTime.ToString("yyyy-MM-dd")</span>)</a>
+        </li>
+    }
+</ul>
+<div class="pager">
+    @if (Model.Page <= 1)
+    {
+        <a href="javascript:void(0);">&laquo; 上一页</a>
+    }
+    else
+    {
+
+        <a href="@Url.Action("List", "Article", new { page = (Model.Page -1), categoryId = ViewBag.CategoryId})">&laquo; 上一页</a>
+    }
+    @if (Model.Page >= Model.PageCount)
+    {
+        <a href="javascript:void(0);">下一页 &raquo;</a>
+    }
+    else
+    {
+        <a href="@Url.Action("List", "Article", new { page = (Model.Page + 1), categoryId = ViewBag.CategoryId})">下一页 &raquo;</a>
+    }
+    <small style="float:right">
+        当前页：@Model.Page - 页数：@Model.PageCount - 文章数：@Model.Total
+    </small>
+</div>

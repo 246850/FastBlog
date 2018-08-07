@@ -1,0 +1,9 @@
+E:\demospaces\FastBlog\FastBlog.Models\bin\Debug\netcoreapp2.1\FastBlog.Models.deps.json
+E:\demospaces\FastBlog\FastBlog.Models\bin\Debug\netcoreapp2.1\FastBlog.Models.dll
+E:\demospaces\FastBlog\FastBlog.Models\bin\Debug\netcoreapp2.1\FastBlog.Models.pdb
+E:\demospaces\FastBlog\FastBlog.Models\obj\Debug\netcoreapp2.1\FastBlog.Models.csproj.CoreCompileInputs.cache
+E:\demospaces\FastBlog\FastBlog.Models\obj\Debug\netcoreapp2.1\FastBlog.Models.AssemblyInfoInputs.cache
+E:\demospaces\FastBlog\FastBlog.Models\obj\Debug\netcoreapp2.1\FastBlog.Models.AssemblyInfo.cs
+E:\demospaces\FastBlog\FastBlog.Models\obj\Debug\netcoreapp2.1\FastBlog.Models.dll
+E:\demospaces\FastBlog\FastBlog.Models\obj\Debug\netcoreapp2.1\FastBlog.Models.pdb
+E:\demospaces\FastBlog\FastBlog.Models\obj\Debug\netcoreapp2.1\FastBlog.Models.csprojAssemblyReference.cache

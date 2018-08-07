@@ -1,0 +1,16 @@
+E:\demospaces\FastBlog\FastBlog.Client\bin\Debug\netcoreapp2.1\FastBlog.Client.deps.json
+E:\demospaces\FastBlog\FastBlog.Client\bin\Debug\netcoreapp2.1\FastBlog.Client.runtimeconfig.json
+E:\demospaces\FastBlog\FastBlog.Client\bin\Debug\netcoreapp2.1\FastBlog.Client.runtimeconfig.dev.json
+E:\demospaces\FastBlog\FastBlog.Client\bin\Debug\netcoreapp2.1\FastBlog.Client.dll
+E:\demospaces\FastBlog\FastBlog.Client\bin\Debug\netcoreapp2.1\FastBlog.Client.pdb
+E:\demospaces\FastBlog\FastBlog.Client\bin\Debug\netcoreapp2.1\FastBlog.Services.dll
+E:\demospaces\FastBlog\FastBlog.Client\bin\Debug\netcoreapp2.1\FastBlog.Services.pdb
+E:\demospaces\FastBlog\FastBlog.Client\obj\Debug\netcoreapp2.1\FastBlog.Client.csprojAssemblyReference.cache
+E:\demospaces\FastBlog\FastBlog.Client\obj\Debug\netcoreapp2.1\FastBlog.Client.csproj.CoreCompileInputs.cache
+E:\demospaces\FastBlog\FastBlog.Client\obj\Debug\netcoreapp2.1\FastBlog.Client.AssemblyInfoInputs.cache
+E:\demospaces\FastBlog\FastBlog.Client\obj\Debug\netcoreapp2.1\FastBlog.Client.AssemblyInfo.cs
+E:\demospaces\FastBlog\FastBlog.Client\obj\Debug\netcoreapp2.1\FastBlog.Client.csproj.CopyComplete
+E:\demospaces\FastBlog\FastBlog.Client\obj\Debug\netcoreapp2.1\FastBlog.Client.dll
+E:\demospaces\FastBlog\FastBlog.Client\obj\Debug\netcoreapp2.1\FastBlog.Client.pdb
+E:\demospaces\FastBlog\FastBlog.Client\bin\Debug\netcoreapp2.1\FastBlog.Models.dll
+E:\demospaces\FastBlog\FastBlog.Client\bin\Debug\netcoreapp2.1\FastBlog.Models.pdb

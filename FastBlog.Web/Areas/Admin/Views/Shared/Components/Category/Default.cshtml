@@ -1,0 +1,15 @@
+﻿@model List<CategoryEntity>
+<select name="CategoryId" id="CategoryId">
+    <option value="-1">请选择</option>
+    @foreach (var item in Model)
+    {
+        if (ViewBag.CategoryId == item.Id)
+        {
+            <option value="@item.Id" selected="selected">@item.Title</option>
+        }
+        else
+        {
+            <option value="@item.Id">@item.Title</option>
+        }
+    }
+</select>

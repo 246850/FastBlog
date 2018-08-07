@@ -1,0 +1,83 @@
+﻿@model ArticleEntity
+@{
+    ViewBag.Title = "添加文章";
+}
+<section class="tool-box">
+    <a href="javascript:history.go(-1);" class="am-btn am-btn-xs am-btn-default"><i class="am-icon-reply"></i>返回</a>
+</section>
+<form action="/admin/article/add" method="post" class="am-form am-form-horizontal" onsubmit="return checkValidate();">
+    <div class="am-form-group">
+        <label class="am-u-sm-2 am-form-label">采集：</label>
+        <div class="am-u-sm-10">
+            <div class="am-input-group am-input-group-success">
+                <input type="text" class="am-form-field" id="url" placeholder="文章采集地址">
+                <span class="am-input-group-btn">
+                    <button class="am-btn am-btn-success" type="button" title="抓取" onclick="doCrawl()"><span class="am-icon-search"></span></button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="am-form-group">
+        <label class="am-u-sm-2 am-form-label">标题：</label>
+        <div class="am-u-sm-10">
+            @Html.TextBoxFor(model => model.Title, new { placeholder = "2-100个字符" })
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label class="am-u-sm-2 am-form-label">分类：</label>
+        <div class="am-u-sm-10">
+            @await Component.InvokeAsync("Category")
+        </div>
+    </div>
+    <div class="am-form-group">
+        @Html.TextAreaFor(model => model.Content)
+    </div>
+    <div class="am-form-group">
+        <div class="am-u-sm-10 am-u-sm-offset-2">
+            <button type="submit" class="am-btn am-btn-primary"><i class="am-icon-check"></i>保存</button>
+        </div>
+    </div>
+</form>
+
+<script src="~/lib/utf8-net/ueditor.config.js"></script>
+<script src="~/lib/utf8-net/ueditor.all.js"></script>
+<script>
+    var editor;
+    function checkValidate() {
+        var $Title = $("#@Html.IdFor(model => model.Title)"),
+            $CategoryId = $("#@Html.IdFor(model => model.CategoryId)");
+        if (!/.{2,100}/.test($Title.val())) {
+            $Title.focus();
+            return false;
+        }
+        if ($CategoryId.val()==="-1") {
+            alert("请选择分类");
+            return false;
+        }
+        if (editor.getContentTxt().length <=0) {
+            editor.focus();
+            return false;
+        }
+        return true;
+    }
+
+    $(function () {
+        editor = UE.getEditor('@Html.IdFor(model=> model.Content)', {
+            initialFrameHeight: 400
+        });
+    });
+
+    function doCrawl() {
+        var match = /^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@@?^=%&:\/~\+#]*[\w\-\@@?^=%&\/~\+#])?$/,
+            $url = $("#url");
+        if (!match.test($url.val())) {
+            $url.focus();
+            return;
+        }
+        $.getJSON("/admin/article/crawl?url=" + $url.val(), function (data) {
+            $("#@Html.IdFor(model=> model.Title)").val(data.title);
+            editor.setContent(data.content);
+        })
+    }
+</script>

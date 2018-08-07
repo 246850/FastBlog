@@ -1,0 +1,7 @@
+﻿@model List<CategoryModel>
+<ul class="list">
+    @foreach (var item in Model)
+    {
+        <li><a href="@Url.Action("List", "Article", new { page = 1, categoryId = item.Id})" title="@item.Desc">@item.Title (<span>@item.ArticleCount</span>)</a></li>
+    }
+</ul>

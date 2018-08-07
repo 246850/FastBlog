@@ -1,0 +1,14 @@
+E:\demospaces\FastBlog\FastBlog.Services\bin\Debug\netcoreapp2.1\FastBlog.Services.deps.json
+E:\demospaces\FastBlog\FastBlog.Services\bin\Debug\netcoreapp2.1\FastBlog.Services.dll
+E:\demospaces\FastBlog\FastBlog.Services\bin\Debug\netcoreapp2.1\FastBlog.Services.pdb
+E:\demospaces\FastBlog\FastBlog.Services\bin\Debug\netcoreapp2.1\FastBlog.Models.dll
+E:\demospaces\FastBlog\FastBlog.Services\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Http.Abstractions.dll
+E:\demospaces\FastBlog\FastBlog.Services\bin\Debug\netcoreapp2.1\FastBlog.Models.pdb
+E:\demospaces\FastBlog\FastBlog.Services\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Http.Abstractions.xml
+E:\demospaces\FastBlog\FastBlog.Services\obj\Debug\netcoreapp2.1\FastBlog.Services.csprojAssemblyReference.cache
+E:\demospaces\FastBlog\FastBlog.Services\obj\Debug\netcoreapp2.1\FastBlog.Services.csproj.CoreCompileInputs.cache
+E:\demospaces\FastBlog\FastBlog.Services\obj\Debug\netcoreapp2.1\FastBlog.Services.AssemblyInfoInputs.cache
+E:\demospaces\FastBlog\FastBlog.Services\obj\Debug\netcoreapp2.1\FastBlog.Services.AssemblyInfo.cs
+E:\demospaces\FastBlog\FastBlog.Services\obj\Debug\netcoreapp2.1\FastBlog.Services.csproj.CopyComplete
+E:\demospaces\FastBlog\FastBlog.Services\obj\Debug\netcoreapp2.1\FastBlog.Services.dll
+E:\demospaces\FastBlog\FastBlog.Services\obj\Debug\netcoreapp2.1\FastBlog.Services.pdb

@@ -1,0 +1,40 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width" />
+    <title>@(ViewBag.Title + " - FastBlog")</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link href="~/css/common.css?v=1.2" rel="stylesheet" />
+</head>
+<body>
+    <header id="site-top">
+        <div class="layout">
+            <h3 class="title">
+                <a href="@Url.Action("List", "Article")" title="基于.Net Core轻量级博客系统">FastBlog</a>
+                <small>基于.Net Core轻量级博客系统</small>
+            </h3>
+        </div>
+    </header>
+    <div id="post-container" class="layout">
+        <nav id="navigition">
+            <h3>分类</h3>
+            @await Component.InvokeAsync("WebCategory")
+        </nav>
+        <article class="content">
+            @RenderBody()
+        </article>
+    </div>
+
+    <footer id="site-footer">
+        <div>
+            &copy;2018
+            <a href="/">FastBlog</a> 保留所有权利
+            <a href="javascript:void(0);" target="_blank">沪ICP备8888888号</a>
+        </div>
+    </footer>
+</body>
+</html>

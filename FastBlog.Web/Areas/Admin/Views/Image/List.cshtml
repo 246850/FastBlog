@@ -1,0 +1,155 @@
+﻿@model PagedList<ImageEntity>
+@{
+    ViewBag.Title = "图片管理";
+    List<ImageCategoryEntity> categoryies = (ViewBag.CategoryList as List<ImageCategoryEntity>) ?? new List<ImageCategoryEntity>();
+}
+<section class="tool-box">
+    <form action="/admin/image/upload" method="post" enctype="multipart/form-data" onsubmit="return checkValidate();" class="am-form am-form-horizontal">
+        <div class="am-form-group">
+            <label class="am-u-sm-2 am-form-label">图片上传：</label>
+            <div class="am-u-sm-10">
+                <div class="am-form-group am-form-file">
+                    <button type="button" class="am-btn am-btn-default am-btn-sm">
+                        <i class="am-icon-cloud-upload"></i> 选择要上传的文件
+                    </button>
+                    <input type="file" accept="image/*" name="upload_name" id="upload-name">
+                </div>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label">所属分类</label>
+            <div class="am-u-sm-10">
+                <select name="categoryId" id="category-id">
+                    <option value="-1">请选择</option>
+                    @foreach (var item in categoryies)
+                    {
+                        <option value="@item.Id">@item.Title</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="am-form-group">
+            <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label"></label>
+            <div class="am-u-sm-10">
+                <button type="submit" class="am-btn am-btn-primary">上传</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+<style>
+    #grid-content {
+        list-style-type: none;
+        padding: 10px;
+    }
+
+        #grid-content li {
+            width: 150px;
+            height: 140px;
+            margin: 5px;
+        }
+
+            #grid-content li img {
+                width: 150px;
+                height: 100px
+            }
+</style>
+<label>分类查询：</label>
+<form id="form_0" action="/admin/image/list" method="get">
+    <select name="categoryId" id="category-id" onchange="doQuery(1)">
+        <option value="-1">请选择</option>
+        @foreach (var item in categoryies)
+        {
+            if (item.Id == ViewBag.CategoryId)
+            {
+                <option value="@item.Id" selected="selected">@item.Title</option>
+            }
+            else
+            {
+                <option value="@item.Id">@item.Title</option>
+            }
+        }
+    </select>
+    <input type="hidden" name="page" id="page" value="@Model.Page" />
+</form>
+<ul id="grid-content">
+    @foreach (var item in Model)
+    {
+    <li>
+        <img src="@item.FilePath" title="@item.FilePath"/>
+        <a href="javascript:doDelete(@item.Id);" title="删除" class="am-btn am-btn-xs am-btn-danger"><i class="am-icon-trash"></i>删除</a>
+        <a href="javascript:void(0);" title="复制" class="am-btn am-btn-xs am-btn-success x-copy" data-clipboard-text="@item.FilePath"><i class="am-icon-copy"></i>复制</a>
+    </li>
+    }
+</ul>
+<ul class="am-pagination">
+    <li>
+        @if (Model.Page <= 1)
+        {
+            <a href="javascript:void(0);">&laquo; 上一页</a>
+        }
+        else
+        {
+
+            <a href="javascript:doQuery(@(Model.Page -1));">&laquo; 上一页</a>
+        }
+    </li>
+    <li>当前页：@Model.Page | 总页数：@Model.PageCount | 总记录数：@Model.Total</li>
+    <li>
+        @if (Model.Page >= Model.PageCount)
+        {
+            <a href="javascript:void(0);">下一页 &raquo;</a>
+        }
+        else
+        {
+            <a href="javascript:doQuery(@(Model.Page +1));">下一页 &raquo;</a>
+        }
+    </li>
+</ul>
+<script src="~/lib/clipboard/dist/clipboard.min.js"></script>
+<script>
+    function checkValidate() {
+        var $categoryId = $("#category-id"),
+            $uploadName = $("#upload-name");
+        if ($categoryId.val() === "-1") {
+            alert("请选择分类");
+            return false;
+        }
+        if (!$uploadName.val()) {
+            alert("请选择上传的图片");
+            return false;
+        }
+    }
+    function doDelete(id) {
+        if (confirm("删除数据后不可恢复，确定删除吗？")) {
+            window.location.href = "/admin/image/delete/" + id;
+        }
+    }
+
+    function doQuery(page) {
+        $("#page").val(page);
+        $("#form_0").submit();
+    }
+    $(function () {
+        $("#grid-content").vgrid({
+            easing: "easeOutBounce",
+            time: 500,
+            delay: 50,
+            wait: 500
+
+        });
+
+        var clipboard = new ClipboardJS('.x-copy', { text:11});
+
+        clipboard.on('success', function (e) {
+            console.dir(e);
+            alert('复制成功：' + e.text);
+        });
+
+        clipboard.on('error', function (e) {
+            console.dir(e);
+        });
+       
+    });
+
+</script>

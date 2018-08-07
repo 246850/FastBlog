@@ -1,0 +1,44 @@
+﻿@model ArticleModel
+@{
+    ViewBag.Title = Model.Title;
+}
+<div class="article-header">
+    <h2 class="article-title">
+        <a href="@Url.Action("Detail", "Article", new { id = Model.Id})">@Model.Title</a>
+    </h2>
+    <p class="article-cite">
+        <span>- 作者：@Model.AccountName</span>
+        <span>- 日期：@Model.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</span>
+        <span>- 分类：<a href="@Url.Action("List", "Article", new { page = 1, categoryId = Model.CategoryId})">@Model.CategoryTitle</a></span>
+    </p>
+</div>
+<div class="article-body">
+    @Html.Raw(Model.Content)
+</div>
+<nav class="article-nav">
+    <p>
+        上一篇：@if (Model.Prev == null)
+        {
+            <text>无。</text>
+        }
+        else
+        {
+            <a href="@Url.Action("Detail", "Article", new { id = Model.Prev.Id})">@Model.Prev.Title (<span>@Model.Prev.CreateTime.ToString("yyyy-MM-dd")</span>)</a>
+        }
+    </p>
+    <p>
+        下一篇：@if (Model.Next == null)
+        {
+            <text>无。</text>
+        }
+        else
+        {
+            <a href="@Url.Action("Detail", "Article", new { id = Model.Next.Id})">@Model.Next.Title (<span>@Model.Next.CreateTime.ToString("yyyy-MM-dd")</span>)</a>
+        }
+    </p>
+</nav>
+<link href="~/lib/utf8-net/third-party/SyntaxHighlighter/shCoreDefault.css" rel="stylesheet" />
+<script src="~/lib/utf8-net/third-party/SyntaxHighlighter/shCore.js"></script>
+<script>
+    SyntaxHighlighter.all()
+</script>

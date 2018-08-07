@@ -1,0 +1,50 @@
+﻿@model CategoryEntity
+@{
+    ViewBag.Title = "修改分类";
+}
+<section class="tool-box">
+    <a href="javascript:history.go(-1);" class="am-btn am-btn-xs am-btn-default"><i class="am-icon-reply"></i>返回</a>
+</section>
+<form action="/admin/category/modify" method="post" class="am-form am-form-horizontal" onsubmit="return checkValidate();">
+    <div class="am-form-group">
+        <label class="am-u-sm-2 am-form-label">标题：</label>
+        <div class="am-u-sm-10">
+            @Html.TextBoxFor(model => model.Title, new { placeholder = "2-20个字符" })
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label class="am-u-sm-2 am-form-label">描述：</label>
+        <div class="am-u-sm-10">
+            @Html.TextBoxFor(model => model.Desc, new { placeholder = "最大200个字符" })
+        </div>
+    </div>
+    <div class="am-form-group">
+        <label class="am-u-sm-2 am-form-label">排序：</label>
+        <div class="am-u-sm-10">
+            @Html.TextBoxFor(model => model.Sequence, new { type = "number", placeholder = "值越大，越靠前" })
+        </div>
+    </div>
+    <div class="am-form-group">
+        <div class="am-u-sm-10 am-u-sm-offset-2">
+            @Html.HiddenFor(model=> model.Id)
+            <button type="submit" class="am-btn am-btn-primary"><i class="am-icon-check"></i>保存</button>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    function checkValidate() {
+        var $Title = $("#@Html.IdFor(model => model.Title)"),
+            $Sequence = $("#@Html.IdFor(model => model.Sequence)");
+        if (!/.{2,19}/.test($Title.val())) {
+            $Title.focus();
+            return false;
+        }
+        if (!/\d/.test($Sequence.val())) {
+            $Sequence.focus();
+            return false;
+        }
+
+        return true;
+    }
+</script>
